@@ -1,0 +1,40 @@
+#include <iostream>
+using namespace std;
+
+// Class definition for a Node
+class Node {
+public:
+    int data;
+    Node* next;
+};
+
+int main() {
+    int n, value;
+    Node *head = NULL, *newnode = NULL, *temp = NULL;
+
+    cout << "Enter no. of nodes: ";
+    cin >> n;
+
+    for (int i = 1; i <= n; i++) {
+        // Dynamically allocate memory for a new node
+        newnode = new Node();
+
+        cout << "Enter data for node " << i << ": ";
+        cin >> value;
+
+        newnode->data = value;
+        newnode->next = NULL;
+
+        if (head == NULL) {
+            // First node becomes the head
+            head = newnode;
+            temp = head;
+        } else {
+            // Link the new node to the list and move temp forward
+            temp->next = newnode;
+            temp = newnode;
+        }
+    }
+
+    return 0;
+}
