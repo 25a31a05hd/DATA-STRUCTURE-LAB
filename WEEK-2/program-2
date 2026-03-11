@@ -1,0 +1,25 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int a[10], n, i;
+    int *p; // Pointer declaration
+
+    cout << "Enter total number of array elements: ";
+    cin >> n;
+
+    p = a; // Point 'p' to the base address of array 'a'
+
+    // Input loop using pointers
+    for (i = 0; i < n; i++) {
+        cin >> *(p + i); 
+    }
+
+    cout << "\nArray elements are: ";
+    // Output loop using pointers
+    for (i = 0; i < n; i++) {
+        cout << *(p + i) << " ";
+    }
+
+    return 0;
+}
