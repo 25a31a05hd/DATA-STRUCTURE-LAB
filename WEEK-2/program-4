@@ -1,0 +1,23 @@
+#include <iostream>
+using namespace std;
+
+// Function using references to swap values
+void swap(int &x, int &y) {
+    x = x + y; // x becomes sum of both
+    y = x - y; // y becomes (sum - y), which is the original x
+    x = x - y; // x becomes (sum - new y), which is the original y
+}
+
+int main() {
+    int a, b;
+    cout << "Enter a, b values: ";
+    cin >> a >> b;
+
+    swap(a, b);
+
+    cout << "After Swapping:" << endl;
+    cout << "Value of a is " << a << endl;
+    cout << "Value of b is " << b << endl;
+
+    return 0;
+}
