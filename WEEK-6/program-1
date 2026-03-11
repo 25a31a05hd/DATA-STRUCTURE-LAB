@@ -1,0 +1,43 @@
+#include <iostream>
+using namespace std;
+
+// Define the blueprint for a node
+class Node {
+public:
+    int data;
+    Node* link;
+};
+
+int main() {
+    Node *h, *cn, *t; // h=head, cn=current node, t=temporary/tail
+    int value;
+
+    // --- Creating the First Node ---
+    cout << "Enter node value: ";
+    cin >> value;
+    cn = new Node();    // Allocate memory for 1st node
+    cn->data = value;   // Set data
+    cn->link = NULL;    // Initialize link to NULL
+    h = cn;             // Set this as the Head of the list
+
+    // --- Creating the Second Node ---
+    cout << "Enter node value: ";
+    cin >> value;
+    cn = new Node();    // Allocate memory for 2nd node
+    cn->data = value;   // Set data
+    cn->link = NULL;    // This is the new end of the list
+    
+    t = h;              // Use t to find the end of the list
+    t->link = cn;       // Connect the 1st node to the 2nd node
+
+    // --- Displaying the List ---
+    cout << "\nLinked List Created: ";
+    t = h;
+    while(t != NULL) {
+        cout << t->data << " -> ";
+        t = t->link;
+    }
+    cout << "NULL" << endl;
+
+    return 0;
+}
