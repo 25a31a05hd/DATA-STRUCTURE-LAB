@@ -1,0 +1,43 @@
+#include <iostream>
+using namespace std;
+
+class Node {
+public:
+    int data;
+    Node *next;
+};
+
+int main() {
+    // 1. Initialize pointers to NULL
+    Node *head = NULL, *second = NULL, *third = NULL, *fourth = NULL;
+
+    // 2. Allocate 4 nodes in the heap
+    head = new Node();
+    second = new Node();
+    third = new Node();
+    fourth = new Node();
+
+    // 3. Assign data and link nodes
+    head->data = 10;      // Assign data to first node
+    head->next = second;  // Link first node to second
+
+    second->data = 20;    // Assign data to second node
+    second->next = third; // Link second node to third
+
+    third->data = 30;     // Assign data to third node
+    third->next = fourth; // Link third node to fourth
+
+    fourth->data = 40;    // Assign data to fourth node
+    fourth->next = NULL;  // Terminate the list
+
+    // 4. Print the list (Traversal)
+    Node *temp = head;
+    cout << "Single Linked list elements are:" << endl;
+    while (temp != NULL) {
+        cout << temp->data << " > ";
+        temp = temp->next;
+    }
+    cout << "NULL";
+
+    return 0;
+}
