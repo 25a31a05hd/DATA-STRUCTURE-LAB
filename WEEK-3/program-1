@@ -1,0 +1,32 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int n, i, key;
+    bool found = false; // Correctly declared boolean flag
+
+    cout << "Enter number of elements (n) and the search key: ";
+    cin >> n >> key;
+
+    int a; // Array of size n
+
+    cout << "Enter " << n << " array elements:" << endl;
+    for (i = 0; i < n; i++) {
+        cin >> a[i];
+    }
+
+    // Linear Search Logic
+    for (i = 0; i < n; i++) {
+        if (a[i] == key) {
+            cout << "Key element found at index " << i << endl;
+            found = true;
+            break; // Stop searching once found
+        }
+    }
+
+    if (!found) {
+        cout << "Element not found" << endl;
+    }
+
+    return 0;
+}
