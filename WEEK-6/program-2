@@ -1,0 +1,41 @@
+#include <iostream>
+using namespace std;
+
+class node {
+public:
+    int data;
+    node *link;
+};
+
+int main() {
+    node *h = NULL, *cn = NULL, *t = NULL;
+    int value, ch = 1;
+
+    while (ch) {
+        cn = new node(); // Create a new node
+        cout << "Enter node value: ";
+        cin >> value;
+
+        cn->data = value;
+        cn->link = NULL;
+
+        if (h == NULL) {
+            // If the list is empty, the new node is the head
+            h = cn;
+            t = cn;
+        } else {
+            // Otherwise, attach it to the end and update the tail
+            t->link = cn;
+            t = cn;
+        }
+
+        cout << "Do you want to create another node? (0 for No, 1 for Yes): ";
+        cin >> ch;
+        
+        if (ch == 0) {
+            break;
+        }
+    }
+
+    return 0;
+}
