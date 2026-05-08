@@ -1,0 +1,56 @@
+#include <iostream>
+#include <cstdlib>
+using namespace std;
+
+class node
+{
+public:
+    int data;
+    node *link;
+};
+
+int main()
+{
+    node *h = NULL, *t = NULL, *n = NULL;
+    int ch;
+
+    do
+    {
+        // Create new node
+        n = new node;
+
+        cout << "Enter node data: ";
+        cin >> n->data;
+
+        n->link = NULL;
+
+        // Insert node
+        if (h == NULL)
+        {
+            h = n;
+            t = n;
+        }
+        else
+        {
+            t->link = n;
+            t = n;
+        }
+
+        cout << "Do you want to continue? (1/0): ";
+        cin >> ch;
+
+    } while (ch == 1);
+
+    // Display linked list
+    cout << "\nLinked List Data:\n";
+
+    t = h;
+
+    while (t != NULL)
+    {
+        cout << t->data << " ";
+        t = t->link;
+    }
+
+    return 0;
+}
