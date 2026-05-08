@@ -1,0 +1,129 @@
+#include <iostream>
+using namespace std;
+#define MAX 10
+
+class Deque {
+    int arr[MAX];
+    int front, rear;
+
+public:
+    Deque() {
+        front = -1;
+        rear = -1;
+    }
+
+    // Check if Deque is full
+    bool isFull() {
+        return ((front == 0 && rear == MAX - 1) || (front == rear + 1));
+    }
+
+    // Check if Deque is empty
+    bool isEmpty() {
+        return (front == -1);
+    }
+
+    // Operation 1: Insert at Front
+    void insertFront(int x) {
+        if (isFull()) {
+            cout << "Deque is FULL\n";
+            return;
+        }
+        if (front == -1) { // First element
+            front = rear = 0;
+        } else if (front == 0) { // Wrap around
+            front = MAX - 1;
+        } else {
+            front--;
+        }
+        arr[front] = x;
+        cout << "Inserted " << x << " at Front.\n";
+    }
+
+    // Operation 2: Insert at Rear
+    void insertRear(int x) {
+        if (isFull()) {
+            cout << "Deque is FULL\n";
+            return;
+        }
+        if (front == -1) { // First element
+            front = rear = 0;
+        } else if (rear == MAX - 1) { // Wrap around
+            rear = 0;
+        } else {
+            rear++;
+        }
+        arr[rear] = x;
+        cout << "Inserted " << x << " at Rear.\n";
+    }
+
+    // Operation 3: Delete from Front
+    void deleteFront() {
+        if (isEmpty()) {
+            cout << "Deque is EMPTY\n";
+            return;
+        }
+        cout << "Deleted " << arr[front] << " from Front.\n";
+        if (front == rear) { // Reset if only one element existed
+            front = rear = -1;
+        } else if (front == MAX - 1) { // Wrap around
+            front = 0;
+        } else {
+            front++;
+        }
+    }
+
+    // Operation 4: Delete from Rear
+    void deleteRear() {
+        if (isEmpty()) {
+            cout << "Deque is EMPTY\n";
+            return;
+        }
+        cout << "Deleted " << arr[rear] << " from Rear.\n";
+        if (front == rear) { // Reset if only one element existed
+            front = rear = -1;
+        } else if (rear == 0) { // Wrap around
+            rear = MAX - 1;
+        } else {
+            rear--;
+        }
+    }
+
+    // Operation 5: Display Deque
+    void display() {
+        if (isEmpty()) {
+            cout << "Deque is EMPTY\n";
+            return;
+        }
+        cout << "Deque elements: ";
+        int i = front;
+        while (true) {
+            cout << arr[i] << " ";
+            if (i == rear) break;
+            i = (i + 1) % MAX; // Circular movement
+        }
+        cout << endl;
+    }
+};
+
+int main() {
+    Deque dq;
+    int choice, x;
+
+    while (true) {
+        cout << "\n--- DEQUE OPERATIONS ---\n";
+        cout << "1. Insert Front\n2. Insert Rear\n3. Delete Front\n4. Delete Rear\n5. Display\n6. Exit\n";
+        cout << "Enter choice: ";
+        cin >> choice;
+
+        switch (choice) {
+            case 1: cout << "Enter element: "; cin >> x; dq.insertFront(x); break;
+            case 2: cout << "Enter element: "; cin >> x; dq.insertRear(x); break;
+            case 3: dq.deleteFront(); break;
+            case 4: dq.deleteRear(); break;
+            case 5: dq.display(); break;
+            case 6: return 0;
+            default: cout << "Invalid choice!\n";
+        }
+    }
+    return 0;
+}
