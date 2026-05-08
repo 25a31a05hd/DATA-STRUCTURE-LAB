@@ -1,0 +1,107 @@
+#include <iostream>
+using namespace std;
+
+class node
+{
+public:
+    int data;
+    node *link;
+};
+
+int main()
+{
+    node *top = NULL, *cn = NULL, *t = NULL;
+    int val, op;
+
+    do
+    {
+        cout << "\n1. PUSH";
+        cout << "\n2. POP";
+        cout << "\n3. PEEK";
+        cout << "\n4. DISPLAY";
+        cout << "\n5. EXIT";
+        cout << "\nChoose any option: ";
+        cin >> op;
+
+        switch(op)
+        {
+            // PUSH Operation
+            case 1:
+                cn = new node();
+
+                cout << "Enter node data: ";
+                cin >> val;
+
+                cn->data = val;
+                cn->link = NULL;
+
+                if(top == NULL)
+                {
+                    top = cn;
+                }
+                else
+                {
+                    cn->link = top;
+                    top = cn;
+                }
+                break;
+
+            // POP Operation
+            case 2:
+                if(top == NULL)
+                {
+                    cout << "Stack is Underflow";
+                }
+                else
+                {
+                    t = top;
+                    cout << t->data << " is popped";
+                    top = top->link;
+                    delete t;
+                }
+                break;
+
+            // PEEK Operation
+            case 3:
+                if(top == NULL)
+                {
+                    cout << "Stack is Empty";
+                }
+                else
+                {
+                    cout << "Top element is: " << top->data;
+                }
+                break;
+
+            // DISPLAY Operation
+            case 4:
+                if(top == NULL)
+                {
+                    cout << "Stack is Empty";
+                }
+                else
+                {
+                    cout << "Stack elements are:\n";
+
+                    t = top;
+
+                    while(t != NULL)
+                    {
+                        cout << t->data << " ";
+                        t = t->link;
+                    }
+                }
+                break;
+
+            case 5:
+                cout << "Exiting...";
+                break;
+
+            default:
+                cout << "Invalid Choice";
+        }
+
+    } while(op != 5);
+
+    return 0;
+}
